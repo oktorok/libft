@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlen_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrodrigu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 02:14:12 by mrodrigu          #+#    #+#             */
-/*   Updated: 2018/01/29 07:32:05 by mrodrigu         ###   ########.fr       */
+/*   Created: 2017/12/16 03:56:28 by mrodrigu          #+#    #+#             */
+/*   Updated: 2017/12/16 04:09:58 by mrodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *str1, const void *str2, size_t n)
+size_t	ft_strlen_free(char *str)
 {
-	size_t			i;
-	char			*s1;
-	const char		*s2;
+	size_t i;
 
-	s1 = str1;
-	s2 = str2;
 	i = 0;
-	while (i < n)
-	{
-		s1[i] = s2[i];
+	while (str[i])
 		i++;
-	}
-	return (str1);
+	ft_strdel(&str);
+	return (i);
 }

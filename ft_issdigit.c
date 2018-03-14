@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_issdigit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrodrigu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrodrigu <mrodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 02:14:12 by mrodrigu          #+#    #+#             */
-/*   Updated: 2018/01/29 07:32:05 by mrodrigu         ###   ########.fr       */
+/*   Created: 2018/02/06 02:54:46 by mrodrigu          #+#    #+#             */
+/*   Updated: 2018/02/06 03:04:42 by mrodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *str1, const void *str2, size_t n)
+char	ft_issdigit(char *str)
 {
-	size_t			i;
-	char			*s1;
-	const char		*s2;
-
-	s1 = str1;
-	s2 = str2;
-	i = 0;
-	while (i < n)
+	if (!str)
+		return (0);
+	while (*str)
 	{
-		s1[i] = s2[i];
-		i++;
+		if (!(ft_isdigit(*(str++))))
+			return (0);
 	}
-	return (str1);
+	return (1);
 }

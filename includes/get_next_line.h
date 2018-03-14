@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultraswap.c                                     :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/18 05:24:25 by jagarcia          #+#    #+#             */
-/*   Updated: 2018/02/19 18:19:34 by jagarcia         ###   ########.fr       */
+/*   Created: 2017/11/30 12:49:31 by jagarcia          #+#    #+#             */
+/*   Updated: 2018/02/26 00:39:41 by jagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include "libft.h"
+# define BUFF_SIZE 1024
+# define NEW(x) ft_strnew(x)
+# define LINE_SIMBOL '\n'
+# include <fcntl.h>
 
-void	ft_swap(void *a, void *b)
+int					get_next_line(const int fd, char **line);
+typedef struct		s_fd
 {
-	void	*tmp;
+	int				fd;
+	char			*buffer;
+	struct s_fd		*next;
+}					t_fd;
 
-	tmp = a;
-	a = b;
-	b = tmp;
-}
+#endif

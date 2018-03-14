@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mrodrigu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/10 02:14:12 by mrodrigu          #+#    #+#             */
-/*   Updated: 2018/01/29 07:32:05 by mrodrigu         ###   ########.fr       */
+/*   Created: 2017/11/07 10:25:35 by jagarcia          #+#    #+#             */
+/*   Updated: 2017/12/16 04:01:10 by mrodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *str1, const void *str2, size_t n)
+size_t		ft_wstrlen(const wchar_t *str)
 {
-	size_t			i;
-	char			*s1;
-	const char		*s2;
+	size_t		i;
 
-	s1 = str1;
-	s2 = str2;
 	i = 0;
-	while (i < n)
+	if (str)
 	{
-		s1[i] = s2[i];
-		i++;
+		while (*str)
+		{
+			i++;
+			str++;
+		}
 	}
-	return (str1);
+	return (i);
 }
