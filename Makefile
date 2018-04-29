@@ -6,7 +6,7 @@
 #    By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 21:23:52 by jagarcia          #+#    #+#              #
-#    Updated: 2018/03/23 23:39:37 by jagarcia         ###   ########.fr        #
+#    Updated: 2018/04/28 09:44:12 by jagarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,32 +103,29 @@ SRC = ft_isascii.c \
 
 OBJ = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
+FT_PRINTF = libftprintf.a
+
 all: $(NAME)
 
-$(NAME): $(OBJ_DIR) $(OBJ)
+$(NAME): $(OBJ) $(FT_PRINTF)
 	@ranlib $(NAME)
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
 $(OBJ_DIR)%.o : %.c
-	@gcc -Wall -Wextra -Iincludes -c $<
-	mv -f $(@F) $(OBJ_DIR)
+	@gcc -Wall -Wextra -Werror -Iincludes -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
 	@ar rc $(NAME) $@
 
 clean:	
 	@rm -f $(OBJ)
 
 fclean: clean
-	rm -r $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
 
 re:	fclean
 	@make
 
-ft_printf: $(NAME)
-	$(MAKE) -C ft_printf re
+$(FT_PRINTF): $(NAME)
+	$(MAKE) -C ft_printf
 	mv ./ft_printf/libftprintf.a .
-
-norme:
-	@norminette $(SRC) libft.h
