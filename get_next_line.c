@@ -6,7 +6,7 @@
 /*   By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 12:53:43 by jagarcia          #+#    #+#             */
-/*   Updated: 2018/03/26 02:08:27 by jagarcia         ###   ########.fr       */
+/*   Updated: 2018/05/14 19:47:12 by mrodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int					reader(char *tmp, int fd, char **line, char **mikel)
 {
 	int		gonz;
 
-	ft_memset(tmp, '\0', BUFF_SIZE);
+	ft_memset(tmp, '\0', BUFF_SIZE + 1);
 	gonz = read(fd, tmp, BUFF_SIZE);
 	if (!gonz)
 	{
