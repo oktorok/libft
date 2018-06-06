@@ -6,13 +6,13 @@
 /*   By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 12:53:43 by jagarcia          #+#    #+#             */
-/*   Updated: 2018/05/14 19:47:12 by mrodrigu         ###   ########.fr       */
+/*   Updated: 2018/06/06 02:12:47 by jagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int			cheker(char *tmp, char **m, char **line)
+static int					cheker(char *tmp, char **m, char **line)
 {
 	int		i;
 	char	*nw;
@@ -40,7 +40,7 @@ static int			cheker(char *tmp, char **m, char **line)
 	return (i);
 }
 
-static int			mikeler(char **mikel, char **line)
+static int					mikeler(char **mikel, char **line)
 {
 	char		*mateo;
 	int			josep;
@@ -75,7 +75,7 @@ static int					reader(char *tmp, int fd, char **line, char **mikel)
 	return (gonz);
 }
 
-static void				newmikel(int fd, t_fd **mikel, t_fd **aux)
+static void					newmikel(int fd, t_fd **mikel, t_fd **aux)
 {
 	if (!*mikel)
 	{
@@ -97,7 +97,7 @@ static void				newmikel(int fd, t_fd **mikel, t_fd **aux)
 	}
 }
 
-int					get_next_line(const int fd, char **line)
+int							get_next_line(const int fd, char **line)
 {
 	char			tmp[BUFF_SIZE + 1];
 	int				gonz;
