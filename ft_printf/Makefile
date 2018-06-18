@@ -6,7 +6,7 @@
 #    By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 17:20:08 by jagarcia          #+#    #+#              #
-#    Updated: 2018/06/08 19:06:14 by mrodrigu         ###   ########.fr        #
+#    Updated: 2018/06/17 10:37:34 by jagarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,7 +133,7 @@ MODS_DIR = srcs/mods/
 
 UTILS_DIR = srcs/utils/
 
-LIBFT_DIR = libft/
+LIBFT_DIR = ../
 
 OBJ_DIR = objects/
 
@@ -167,8 +167,8 @@ all : $(NAME)
 $(NAME) : $(MAINS_OBJ) $(TYPES_OBJ) $(FORMATS_OBJ) $(MODS_OBJ) $(UTILS_OBJ) $(LIBFT_OBJ) $(UTILS_FLOAT_OBJ)
 	ranlib $(NAME)
 
-$(LIBFT_DIR)%.o : $(LIBFT_DIR)%.c 
-	$(MAKE) -C $(LIBFT_DIR) --no-print-directory $(@F)
+$(LIBFT_DIR)$(OBJ_DIR)%.o : $(LIBFT_DIR)%.c 
+	$(MAKE) -C $(LIBFT_DIR) --no-print-directory $(OBJ_DIR)$(@F)
 	ar -rs $(NAME) $@ 
 
 $(OBJ_DIR)%.o : $(MAINS_DIR)%.c $(HEADER_PATH)

@@ -6,7 +6,7 @@
 #    By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 21:23:52 by jagarcia          #+#    #+#              #
-#    Updated: 2018/04/29 16:41:46 by mrodrigu         ###   ########.fr        #
+#    Updated: 2018/06/18 09:36:57 by jagarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,9 @@ SRC = ft_isascii.c \
 
 OBJ = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
-FT_PRINTF_DIR = ft_printf
+FT_PRINTF_DIR = ft_printf/
+
+PRINTF = libftprintf.a
 
 all: $(NAME)
 
@@ -112,6 +114,7 @@ $(NAME): $(OBJ) $(FT_PRINTF_DIR)
 
 $(FT_PRINTF_DIR):
 	$(MAKE) -C ft_printf
+	mv $(FT_PRINTF_DIR)$(PRINTF) .
 
 $(OBJ_DIR)%.o : %.c
 	@gcc -Wall -Wextra -Werror -Iincludes -c $<
