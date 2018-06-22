@@ -6,7 +6,7 @@
 #    By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 21:23:52 by jagarcia          #+#    #+#              #
-#    Updated: 2018/06/18 10:16:38 by jagarcia         ###   ########.fr        #
+#    Updated: 2018/06/22 18:08:25 by jagarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,8 @@ SRC = ft_isascii.c \
 	  ft_strinvert.c \
 	  ft_error.c \
 	  get_next_line.c \
-	  ft_numint.c
+	  ft_numint.c \
+	  ft_min.c
 
 OBJ = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
