@@ -6,7 +6,7 @@
 /*   By: jagarcia <mrodrigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 18:07:01 by jagarcia          #+#    #+#             */
-/*   Updated: 2018/06/22 18:07:41 by jagarcia         ###   ########.fr       */
+/*   Updated: 2018/06/22 18:16:30 by jagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 int		ft_min(int a, int b)
 {
-	a < b ? return(a) : return (b);
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }
