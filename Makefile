@@ -6,7 +6,7 @@
 #    By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 21:23:52 by jagarcia          #+#    #+#              #
-#    Updated: 2018/04/29 16:41:46 by mrodrigu         ###   ########.fr        #
+#    Updated: 2018/06/29 14:04:22 by jagarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,9 @@ SRC = ft_isascii.c \
 	  get_next_line.c \
 	  ft_numint.c
 
+HEADERS =	includes/libft.h \
+			includes/get_next_line.h
+
 OBJ = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
 FT_PRINTF_DIR = ft_printf
@@ -111,9 +114,9 @@ $(NAME): $(OBJ) $(FT_PRINTF_DIR)
 	@ranlib $(NAME)
 
 $(FT_PRINTF_DIR):
-	$(MAKE) -C ft_printf
+	@$(MAKE) -C ft_printf
 
-$(OBJ_DIR)%.o : %.c
+$(OBJ_DIR)%.o : %.c $(HEADERS)
 	@gcc -Wall -Wextra -Werror -Iincludes -c $<
 	@mkdir -p $(OBJ_DIR)
 	@mv -f $(@F) $(OBJ_DIR)

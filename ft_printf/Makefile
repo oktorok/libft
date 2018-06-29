@@ -6,15 +6,13 @@
 #    By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 17:20:08 by jagarcia          #+#    #+#              #
-#    Updated: 2018/06/08 19:06:14 by mrodrigu         ###   ########.fr        #
+#    Updated: 2018/06/29 12:34:19 by jagarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY : compile norme all clean fclean re
 
-NAME = libftprintf.a
-
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror 
 
 MAIN_FUNCS = ft_printf.c \
 			 ft_asprintf.c \
@@ -76,153 +74,68 @@ TYPES = ft_sls_type.c \
 		ft_m_type.c \
 		ft_error_type.c
 
-LIBFT_FUNCTIONS = ft_strncpy.c \
-				  ft_strcpy.c \
-				  ft_putstr.c \
-	 			  ft_strnew.c \
-		 		  ft_strlen.c \
-	 			  ft_putnbr.c \
-	 			  ft_putchar.c \
-	 			  ft_strsub.c \
-	 			  ft_strdup.c \
-	 			  ft_strjoin.c \
-	 			  ft_strnjoinfree.c \
-	 			  ft_strjoinfree.c \
-	 			  ft_strcat.c \
-	 			  ft_memcpy.c \
-	 			  ft_memmove.c \
-	 			  ft_atoi.c \
-	 			  ft_isdigit.c \
-	 			  ft_memset.c \
-	 			  ft_lstnew.c \
-	 			  ft_memalloc.c \
-	 			  ft_putbytes.c \
-	 			  ft_wstrlen.c \
-	 			  ft_strdel.c \
-	 			  ft_strchr.c \
-	 			  ft_strlen_free.c \
-	 			  ft_memalloc.c \
-	 			  ft_memdel.c \
-				  ft_strstr.c \
-				  ft_itoa.c \
-				  ft_toupper.c \
-				  ft_strcmp.c \
-				  ft_strncmp.c \
-				  ft_issdigit.c \
-				  ft_memjoinfree.c \
-				  ft_abs.c \
-				  ft_strinsert.c \
-				  ft_strinsertfree.c \
-				  ft_strcut.c \
-				  ft_strcutfree.c \
-				  ft_strinvert.c
-
-HEADERS =	formats.h \
-			mods.h \
-			libftprintf.h \
-			my_float.h \
-			ten_power.h \
-			types.h \
-			utils.h
-
+LIBFT = libft.a
+LIBFT_DIR = ../
 TYPES_DIR = srcs/types/
-
 FORMATS_DIR = srcs/formats/
-
 MODS_DIR = srcs/mods/
-
 UTILS_DIR = srcs/utils/
-
-LIBFT_DIR = libft/
-
-OBJ_DIR = objects/
-
 UTILS_FLOAT_DIR = $(UTILS_DIR)utils_float/
-
 MAINS_DIR = srcs/
-
 INCLUDES_DIR = includes/
 
+
+OBJ_DIR = ../objects/
 MAINS_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o,$(MAIN_FUNCS))
-
 FORMATS_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o,$(FORMATS))
-
 TYPES_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o,$(TYPES))
-
-LIBFT_OBJ = $(patsubst %.c, $(LIBFT_DIR)%.o, $(LIBFT_FUNCTIONS))
-
 MODS_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o, $(MODS))
-
 UTILS_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o, $(UTILS))
-
 UTILS_FLOAT_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o, $(UTILS_FLOAT))
-
-HEADER_PATH = $(patsubst %.h, $(INCLUDES_DIR)%.h, $(HEADERS))
-
 OBJ = $(MAINS_OBJ) $(FORMATS_OBJ) $(TYPES_OBJ) $(LIBFT_OBJ) $(MODS_OBJ) $(UTILS_OBJ) $(UTILS_FLOAT_OBJ)
 
+$(LIBFT_DIR)$(LIBFT) : $(OBJ)
 
-all : $(NAME)
+$(OBJ_DIR)%.o : $(MAINS_DIR)%.c
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@
 
-$(NAME) : $(MAINS_OBJ) $(TYPES_OBJ) $(FORMATS_OBJ) $(MODS_OBJ) $(UTILS_OBJ) $(LIBFT_OBJ) $(UTILS_FLOAT_OBJ)
-	ranlib $(NAME)
+$(OBJ_DIR)%.o : $(FORMATS_DIR)%.c
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
-$(LIBFT_DIR)%.o : $(LIBFT_DIR)%.c 
-	$(MAKE) -C $(LIBFT_DIR) --no-print-directory $(@F)
-	ar -rs $(NAME) $@ 
+$(OBJ_DIR)%.o : $(TYPES_DIR)%.c
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
-$(OBJ_DIR)%.o : $(MAINS_DIR)%.c $(HEADER_PATH)
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(NAME) $@ 
+$(OBJ_DIR)%.o : $(UTILS_DIR)%.c
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
-$(OBJ_DIR)%.o : $(FORMATS_DIR)%.c $(HEADER_PATH)
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(NAME) $@ 
+$(OBJ_DIR)%.o : $(UTILS_FLOAT_DIR)%.c
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
-$(OBJ_DIR)%.o : $(TYPES_DIR)%.c $(HEADER_PATH)
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(NAME) $@ 
-
-$(OBJ_DIR)%.o : $(UTILS_DIR)%.c $(HEADER_PATH)
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(NAME) $@ 
-
-$(OBJ_DIR)%.o : $(UTILS_FLOAT_DIR)%.c $(HEADER_PATH)
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(NAME) $@ 
-
-$(OBJ_DIR)%.o : $(MODS_DIR)%.c $(HEADER_PATH)
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(NAME) $@ 
+$(OBJ_DIR)%.o : $(MODS_DIR)%.c
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@
 
 clean:
-	rm -f $(OBJ_SRC)
-	rm -rf $(OBJ_DIR)
-	$(MAKE) -C $(LIBFT_DIR) clean
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean
-	make
-
-compile:
-	make
-	gcc $(FLAGS) prueba.c $(NAME) -I$(INCLUDES_DIR)
-
-compile2:
-	make
-	gcc $(FLAGS) prueba2.c $(NAME) -I$(INCLUDES_DIR)
+	@make
