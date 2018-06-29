@@ -6,7 +6,7 @@
 #    By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 17:20:08 by jagarcia          #+#    #+#              #
-#    Updated: 2018/04/29 16:39:57 by mrodrigu         ###   ########.fr        #
+#    Updated: 2018/06/29 12:34:19 by jagarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,45 +97,45 @@ OBJ = $(MAINS_OBJ) $(FORMATS_OBJ) $(TYPES_OBJ) $(LIBFT_OBJ) $(MODS_OBJ) $(UTILS_
 $(LIBFT_DIR)$(LIBFT) : $(OBJ)
 
 $(OBJ_DIR)%.o : $(MAINS_DIR)%.c
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(LIBFT_DIR)$(LIBFT) $@
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@
 
 $(OBJ_DIR)%.o : $(FORMATS_DIR)%.c
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
 $(OBJ_DIR)%.o : $(TYPES_DIR)%.c
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
 $(OBJ_DIR)%.o : $(UTILS_DIR)%.c
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
 $(OBJ_DIR)%.o : $(UTILS_FLOAT_DIR)%.c
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
 $(OBJ_DIR)%.o : $(MODS_DIR)%.c
-	gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
-	mkdir -p $(OBJ_DIR)
-	mv -f $(@F) $(OBJ_DIR)
-	ar -rs $(LIBFT_DIR)$(LIBFT) $@
+	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
+	@mkdir -p $(OBJ_DIR)
+	@mv -f $(@F) $(OBJ_DIR)
+	@ar -rs $(LIBFT_DIR)$(LIBFT) $@
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
 
 re: fclean
-	make
+	@make
