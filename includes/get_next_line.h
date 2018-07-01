@@ -6,14 +6,14 @@
 /*   By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 12:49:31 by jagarcia          #+#    #+#             */
-/*   Updated: 2018/06/25 15:42:05 by jagarcia         ###   ########.fr       */
+/*   Updated: 2018/05/02 18:58:30 by jagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # include "libft.h"
-# define BUFF_SIZE 30
+# define BUFF_SIZE 1
 # define NEW(x) ft_strnew(x)
 # define LINE_SIMBOL '\n'
 # include <fcntl.h>

@@ -6,7 +6,7 @@
 #    By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 17:20:08 by jagarcia          #+#    #+#              #
-#    Updated: 2018/06/29 12:34:19 by jagarcia         ###   ########.fr        #
+#    Updated: 2018/07/01 19:16:44 by jagarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,14 @@ TYPES = ft_sls_type.c \
 		ft_m_type.c \
 		ft_error_type.c
 
+HEADERS =	formats.h \
+			libftprintf.h \
+			mods.h \
+			my_float.h \
+			ten_power.h \
+			types.h	\
+			utils.h
+
 LIBFT = libft.a
 LIBFT_DIR = ../
 TYPES_DIR = srcs/types/
@@ -84,8 +92,8 @@ UTILS_FLOAT_DIR = $(UTILS_DIR)utils_float/
 MAINS_DIR = srcs/
 INCLUDES_DIR = includes/
 
-
 OBJ_DIR = ../objects/
+HEADERS_PATH = $(patsubst %.h,$(INCLUDES_DIR)%.h,$(HEADERS))
 MAINS_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o,$(MAIN_FUNCS))
 FORMATS_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o,$(FORMATS))
 TYPES_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o,$(TYPES))
@@ -94,39 +102,39 @@ UTILS_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o, $(UTILS))
 UTILS_FLOAT_OBJ = $(patsubst %.c, $(OBJ_DIR)%.o, $(UTILS_FLOAT))
 OBJ = $(MAINS_OBJ) $(FORMATS_OBJ) $(TYPES_OBJ) $(LIBFT_OBJ) $(MODS_OBJ) $(UTILS_OBJ) $(UTILS_FLOAT_OBJ)
 
-$(LIBFT_DIR)$(LIBFT) : $(OBJ)
+$(LIBFT_DIR)$(LIBFT) :$(OBJ)
 
-$(OBJ_DIR)%.o : $(MAINS_DIR)%.c
+$(OBJ_DIR)%.o : $(MAINS_DIR)%.c $(HEADERS_PATH)
 	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
 	@mkdir -p $(OBJ_DIR)
 	@mv -f $(@F) $(OBJ_DIR)
 	@ar -rs $(LIBFT_DIR)$(LIBFT) $@
 
-$(OBJ_DIR)%.o : $(FORMATS_DIR)%.c
+$(OBJ_DIR)%.o : $(FORMATS_DIR)%.c $(HEADERS_PATH)
 	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
 	@mkdir -p $(OBJ_DIR)
 	@mv -f $(@F) $(OBJ_DIR)
 	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
-$(OBJ_DIR)%.o : $(TYPES_DIR)%.c
+$(OBJ_DIR)%.o : $(TYPES_DIR)%.c $(HEADERS_PATH)
 	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
 	@mkdir -p $(OBJ_DIR)
 	@mv -f $(@F) $(OBJ_DIR)
 	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
-$(OBJ_DIR)%.o : $(UTILS_DIR)%.c
+$(OBJ_DIR)%.o : $(UTILS_DIR)%.c $(HEADERS_PATH)
 	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
 	@mkdir -p $(OBJ_DIR)
 	@mv -f $(@F) $(OBJ_DIR)
 	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
-$(OBJ_DIR)%.o : $(UTILS_FLOAT_DIR)%.c
+$(OBJ_DIR)%.o : $(UTILS_FLOAT_DIR)%.c $(HEADERS_PATH)
 	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
 	@mkdir -p $(OBJ_DIR)
 	@mv -f $(@F) $(OBJ_DIR)
 	@ar -rs $(LIBFT_DIR)$(LIBFT) $@ 
 
-$(OBJ_DIR)%.o : $(MODS_DIR)%.c
+$(OBJ_DIR)%.o : $(MODS_DIR)%.c $(HEADERS_PATH)
 	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
 	@mkdir -p $(OBJ_DIR)
 	@mv -f $(@F) $(OBJ_DIR)
