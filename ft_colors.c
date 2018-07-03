@@ -6,7 +6,7 @@
 /*   By: jagarcia <jagarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/04 04:29:17 by jagarcia          #+#    #+#             */
-/*   Updated: 2018/02/19 11:22:51 by jagarcia         ###   ########.fr       */
+/*   Updated: 2018/07/03 23:02:00 by jagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,9 @@ static char		*apply_com(char *str, int start, int end, int *len)
 
 char			*ft_colors(char *str, int *len)
 {
-	int	i;
-	int	end;
+	int		i;
+	int		end;
+	char	*aux;
 
 	if ((int)ft_strlen(str) != (*len))
 		return (str);
@@ -134,8 +135,10 @@ char			*ft_colors(char *str, int *len)
 		{
 			if ((end = check_com(str, i + 1, *len)) && str[i + 1] != '}')
 			{
+				aux = str;
 				if (!(str = apply_com(str, i + 1, end, len)))
 					return (NULL);
+				free(aux);
 			}
 			i++;
 		}
