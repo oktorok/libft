@@ -6,7 +6,7 @@
 #    By: jagarcia <mrodrigu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/30 22:34:55 by jagarcia          #+#    #+#              #
-#    Updated: 2018/07/01 20:00:25 by jagarcia         ###   ########.fr        #
+#    Updated: 2018/07/01 21:38:10 by jagarcia         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -153,7 +153,8 @@ SRC =	ft_isascii.c \
 		ft_percent_type.c \
 		ft_feleglg_type.c \
 		ft_m_type.c \
-		ft_error_type.c
+		ft_error_type.c \
+		ft_min.c
 
 HEADERS =	includes/libft.h \
 			includes/get_next_line.h \
