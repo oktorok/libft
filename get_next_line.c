@@ -3,123 +3,92 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mrodrigu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/30 12:53:43 by jagarcia          #+#    #+#             */
-/*   Updated: 2018/06/06 02:12:47 by jagarcia         ###   ########.fr       */
+/*   Created: 2017/11/30 21:26:55 by mrodrigu          #+#    #+#             */
+/*   Updated: 2018/07/11 01:47:19 by jagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int					cheker(char *tmp, char **m, char **line)
+static int		check_line(char *buff, size_t size)
 {
-	int		i;
-	char	*nw;
-	char	*tl;
+	size_t i;
 
 	i = 0;
-	if ((nw = ft_strchr(tmp, LINE_SIMBOL)))
-	{
-		ft_strdel(m);
-		if (*(nw + 1))
-			*m = ft_strncpy(NEW(ft_strlen(nw) - 1), nw + 1, ft_strlen(nw) - 1);
-		i = 1;
-	}
-	if (*line)
-	{
-		if (!(tl = NEW(ft_strlen(*line) + ft_strlen(tmp) - ft_strlen(nw) + 1)))
-			return (-1);
-		ft_strcpy(tl, *line);
-	}
-	else if (!(tl = ft_strnew(ft_strlen(tmp) - ft_strlen(nw) + 1)))
+	while (buff[i] && buff[i] != END_OF_LINE && i < size)
+		i++;
+	if (i == size)
 		return (-1);
-	ft_strncat(tl, tmp, ft_strlen(tmp) - ft_strlen(nw));
-	ft_strdel(line);
-	*line = tl;
 	return (i);
 }
 
-static int					mikeler(char **mikel, char **line)
+static int		read_file(int fd, char *buff, char **line, char **lines)
 {
-	char		*mateo;
-	int			josep;
+	int	rd;
 
-	josep = 0;
-	mateo = ft_strnew(ft_strlen(*mikel));
-	ft_strcpy(mateo, *mikel);
-	ft_strdel(mikel);
-	if ((josep = cheker(mateo, mikel, line)) < 0)
-		return (-1);
-	ft_strdel(&mateo);
-	return (josep);
-}
-
-static int					reader(char *tmp, int fd, char **line, char **mikel)
-{
-	int		gonz;
-
-	ft_memset(tmp, '\0', BUFF_SIZE + 1);
-	gonz = read(fd, tmp, BUFF_SIZE);
-	if (!gonz)
+	if (!(rd = read(fd, buff, BUFF_SIZE)))
 	{
-		if (!*line)
-			return (0);
-		else
+		ft_strdel(&(lines[fd]));
+		if (**line)
 			return (1);
 	}
-	else if (gonz < 0)
-		return (-1);
-	if ((gonz = cheker(tmp, mikel, line)) < 0)
-		return (-1);
-	return (gonz);
+	return (rd);
 }
 
-static void					newmikel(int fd, t_fd **mikel, t_fd **aux)
+static int		read_line(char **lines, int fd, char **line)
 {
-	if (!*mikel)
+	char	buff[BUFF_SIZE + 1];
+	int		rd;
+	char	*aux;
+	int		pos;
+
+	while (1)
 	{
-		*mikel = (t_fd *)ft_memalloc(sizeof(t_fd));
-		(*mikel)->fd = fd;
-		(*mikel)->buffer = NULL;
-		(*mikel)->next = NULL;
+		ft_memset(buff, 0, BUFF_SIZE + 1);
+		if ((rd = read_file(fd, buff, line, lines)) <= 0)
+			return (rd);
+		if ((pos = check_line(buff, BUFF_SIZE)) >= 0)
+		{
+			aux = ft_strnjoin(*line, buff, pos);
+			ft_strdel(line);
+			*line = aux;
+			if (buff[pos + 1])
+				lines[fd] = ft_strsub(buff, pos + 1, rd - pos - 1);
+			return ((*line) ? 1 : -1);
+		}
+		aux = ft_strjoin(*line, buff);
+		ft_strdel(line);
+		*line = aux;
 	}
-	*aux = *mikel;
-	while ((*mikel)->next && (*mikel)->fd != fd)
-		*mikel = (*mikel)->next;
-	if (!((*mikel)->next) && (*mikel)->fd != fd)
-	{
-		(*mikel)->next = (t_fd *)ft_memalloc(sizeof(t_fd));
-		*mikel = (*mikel)->next;
-		(*mikel)->fd = fd;
-		(*mikel)->buffer = NULL;
-		(*mikel)->next = NULL;
-	}
+	return (-1);
 }
 
-int							get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
-	char			tmp[BUFF_SIZE + 1];
-	int				gonz;
-	static t_fd		*mikel = NULL;
-	t_fd			*aux;
+	static char		*lines[OPEN_MAX] = {0};
+	int				pos;
+	char			*aux;
 
-	if (fd < 0 || !line)
+	if (fd >= OPEN_MAX || fd < 0 || !line || !(*line = ft_strnew(0)))
 		return (-1);
-	newmikel(fd, &mikel, &aux);
-	gonz = 0;
-	*line = NULL;
-	if (mikel->buffer)
-		if ((gonz = mikeler(&(mikel->buffer), line)) < 0)
-			return (-1);
-	while (!gonz)
+	if (lines[fd])
 	{
-		gonz = reader(tmp, mikel->fd, line, &(mikel->buffer));
-		if (gonz < 0)
-			return (gonz);
-		if (gonz == 0 && !*line)
-			return (gonz);
+		if ((pos = check_line(lines[fd], ft_strlen(lines[fd]))) >= 0)
+		{
+			aux = ft_strnjoin(*line, lines[fd], pos);
+			ft_strdel(line);
+			*line = aux;
+			aux = ft_strsub(lines[fd], pos + 1, ft_strlen(lines[fd]) - pos - 1);
+			ft_strdel(&(lines[fd]));
+			lines[fd] = aux;
+			return ((*line) ? 1 : -1);
+		}
+		aux = ft_strjoin(*line, lines[fd]);
+		ft_strdel(line);
+		*line = aux;
+		ft_strdel(&(lines[fd]));
 	}
-	mikel = aux;
-	return (1);
+	return (read_line(lines, fd, line));
 }
