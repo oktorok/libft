@@ -6,7 +6,7 @@
 /*   By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:15:11 by jagarcia          #+#    #+#             */
-/*   Updated: 2018/07/01 21:37:27 by jagarcia         ###   ########.fr       */
+/*   Updated: 2018/07/11 03:38:19 by jagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <errno.h>
 # include <stdio.h>
 # include "get_next_line.h"
-# include "libftprintf.h"
 
 typedef struct		s_list
 {
@@ -26,6 +25,9 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+int					ft_printf(const char *str, ...);
+int					ft_asprintf(char **buffer, const char *str, ...);
+int					ft_dprintf(int fd, const char *str, ...);
 void				ft_putchar(char c);
 void				ft_putstr(const char *str);
 size_t				ft_strlen(const char *str);
