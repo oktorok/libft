@@ -6,7 +6,7 @@
 /*   By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 21:13:24 by jagarcia          #+#    #+#             */
-/*   Updated: 2018/09/30 20:48:51 by jagarcia         ###   ########.fr       */
+/*   Updated: 2018/09/30 22:26:03 by mrodrigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static int		take_num(char *comm, int *len)
 	while (*len >= 0 && (ft_isdigit(comm[*len])))
 	{
 		(*len)--;
-		if (comm[*len] == '-' && comm[*len - 1] == '.')
+		if (*len > 0 && comm[*len] == '-' && comm[*len - 1] == '.')
 			(*len)--;
 	}
-	if ((comm[(*len)] != '.' && ft_atoi(comm + *len + 1) != 0) ||
-				comm[(*len)] == ',')
+	if (*len >= 0 && ((comm[(*len)] != '.' && ft_atoi(comm + *len + 1) != 0) ||
+				comm[(*len)] == ','))
 	{
 		(*len)++;
 		return (0);
@@ -36,7 +36,7 @@ static int		take_size(char *comm, int len)
 		if (comm[len] == '$')
 		{
 			len--;
-			while (ft_isdigit(comm[len]) && len >= 0)
+			while (len >= 0 && ft_isdigit(comm[len]))
 				len--;
 			if (len < 0)
 				return (0);
