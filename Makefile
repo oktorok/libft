@@ -37,7 +37,6 @@ ifeq ($(MODE), 0)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ranlib $(NAME)
 
 $(OBJ_DIR)%.o : %.c $(HEADERS_PATH)
 	@printf "\r                                          "
@@ -45,11 +44,13 @@ $(OBJ_DIR)%.o : %.c $(HEADERS_PATH)
 	@gcc $(FLAGS) -I$(INCLUDES_DIR) -c $<
 	@mkdir -p $(OBJ_DIR)
 	@mv -f $(@F) $(OBJ_DIR)
-	@ar rsc $(NAME) $@
 
 else
 
-all: $(OBJ)
+$(NAME): $(OBJ)
+	@ar rsc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+
 
 $(OBJ_DIR)%.o : %.c $(HEADERS_PATH)
 	touch caca.caca
