@@ -48,11 +48,11 @@ $(OBJ_DIR)%.o : %.c $(HEADERS_PATH)
 	@ar rsc $(NAME) $@
 
 else
+
 all: $(OBJ)
 
-$(OBJ_DIR)%.o : $(NAME) ;
-
-$(NAME):
+$(OBJ_DIR)%.o : %.c $(HEADERS_PATH)
+	touch caca.caca
 	@printf "\033[92mCompiling libft...\033[0m\n"
 	@$(MAKE)  MODE=0
 	@printf "\r                                          "
