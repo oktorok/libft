@@ -1,9 +1,9 @@
 #******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile_ini.mk                                    :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jagarcia <mrodrigu@student.42.fr>          +#+  +:+       +#+         #
+#    By: jagarcia <jagarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/30 22:34:55 by jagarcia          #+#    #+#              #
 #    Updated: 2018/07/01 21:38:10 by jagarcia         ###   ########.fr        #
@@ -61,12 +61,12 @@ $(NAME):
 endif
 
 clean:
-	@printf "\033[92m<< Cleaning Objects >>\n\033[0m"
+	@printf "\033[92m<< Cleaning $(NAME) >>\n\033[0m"
 	@rm -f $(OBJ)
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@printf "\r\033[92m<< Cleaning $(NAME) >>\n\033[0m"
+	@printf "\r\033[92m<< Fcleaning $(NAME) >>\n\033[0m"
 	@rm -f $(NAME)
 
 re:	fclean
