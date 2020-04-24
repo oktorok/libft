@@ -18,7 +18,6 @@
 # include <errno.h>
 # include <stdio.h>
 # include "get_next_line.h"
-# include "libftprintf.h"
 
 typedef struct		s_list
 {
@@ -112,4 +111,5 @@ char				*ft_strinvert(const char *str);
 void				ft_error(char *err);
 int					ft_numint(int *array, int length, int num);
 int					ft_min(int a, int b);
+char				*ft_strrealloc(char *ptr, size_t size);
 #endif

@@ -26,7 +26,7 @@ HEADERS := $(shell cat files_list/headers.txt)
 
 INCLUDES_DIR = includes/
 
-HEADER_PAH = $(patsubst %.h, $(INCLUDES_DIR)%.h, $(HEADERS))
+HEADERS_PATH = $(patsubst %.h, $(INCLUDES_DIR)%.h, $(HEADERS))
 
 OBJ = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
@@ -53,7 +53,6 @@ $(NAME): $(OBJ)
 
 
 $(OBJ_DIR)%.o : %.c $(HEADERS_PATH)
-	touch caca.caca
 	@printf "\033[92mCompiling libft...\033[0m\n"
 	@$(MAKE)  MODE=0
 	@printf "\r                                          "
