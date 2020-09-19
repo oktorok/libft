@@ -55,8 +55,8 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
-int					ft_toupper(int c);
-int					ft_tolower(int c);
+char					ft_toupper(char c);
+char					ft_tolower(char c);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void	**ap);
 char				*ft_strnew(size_t size);
@@ -112,4 +112,5 @@ void				ft_error(char *err);
 int					ft_numint(int *array, int length, int num);
 int					ft_min(int a, int b);
 char				*ft_strrealloc(char *ptr, size_t size);
+void				ft_putbits(char src);
 #endif

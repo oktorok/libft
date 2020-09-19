@@ -57,7 +57,7 @@ char			*ft_itoa_base(int value, int base)
 			neg = 1;
 	}
 	digits = calcdigits(value, base);
-	if (!(res = (char *)malloc(sizeof(char) * (neg + digits))))
+	if (!(res = (char *)ft_memalloc(sizeof(char) * (neg + digits + 1))))
 		return (NULL);
 	i = digits + neg - 1;
 	if (neg)

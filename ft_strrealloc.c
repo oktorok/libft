@@ -18,11 +18,11 @@ char	*ft_strrealloc(char *ptr, size_t size)
 	size_t	len;
 
 	if (!ptr)
-		return ((char *)ft_memalloc(size));
+		return ft_strnew(size);
 	len = ft_strlen(ptr);
 	if (len >= size)
 		return (ptr);
-	if (!(dest = (char *)ft_memalloc(size)))
+	if (!(dest = ft_strnew(size)))
 		return (dest);
 	dest = ft_strcpy(dest, ptr);
 	return (dest);

@@ -75,3 +75,4 @@ ft_tolower.c
 ft_toupper.c 
 get_next_line.c
 ft_strrealloc.c
+ft_putbits.c
