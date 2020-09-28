@@ -28,7 +28,8 @@ static int					cheker(char *tmp, char **m, char **line)
 	}
 	if (*line)
 	{
-		if (!(tl = NEW(ft_strlen(*line) + ft_strlen(tmp) - ft_strlen(nw) + 1)))
+		if (!(tl = ft_strnew(ft_strlen(*line) +
+							ft_strlen(tmp) - ft_strlen(nw) + 1)))
 			return (-1);
 		ft_strcpy(tl, *line);
 	}

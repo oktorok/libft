@@ -18,7 +18,7 @@ char	*ft_strrealloc(char *ptr, size_t size)
 	size_t	len;
 
 	if (!ptr)
-		return ft_strnew(size);
+		return (ft_strnew(size));
 	len = ft_strlen(ptr);
 	if (len >= size)
 		return (ptr);
