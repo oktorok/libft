@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static int					cheker(char *tmp, char **m, char **line)
+static int					cheker(char *tmp, char **m, char **line, int l_tmp)
 {
 	int		i;
 	char	*nw;
@@ -23,19 +23,19 @@ static int					cheker(char *tmp, char **m, char **line)
 	{
 		ft_strdel(m);
 		if (*(nw + 1))
-			*m = ft_strncpy(NEW(ft_strlen(nw) - 1), nw + 1, ft_strlen(nw) - 1);
+			*m = ft_strncpy(ft_strnew(ft_strlen(nw) - 1)
+							, nw + 1, ft_strlen(nw) - 1);
 		i = 1;
 	}
 	if (*line)
 	{
-		if (!(tl = ft_strnew(ft_strlen(*line) +
-							ft_strlen(tmp) - ft_strlen(nw) + 1)))
+		if (!(tl = ft_strnew(ft_strlen(*line) + l_tmp - ft_strlen(nw) + 1)))
 			return (-1);
 		ft_strcpy(tl, *line);
 	}
-	else if (!(tl = ft_strnew(ft_strlen(tmp) - ft_strlen(nw) + 1)))
+	else if (!(tl = ft_strnew(l_tmp - ft_strlen(nw) + 1)))
 		return (-1);
-	ft_strncat(tl, tmp, ft_strlen(tmp) - ft_strlen(nw));
+	ft_strncat(tl, tmp, l_tmp - ft_strlen(nw));
 	ft_strdel(line);
 	*line = tl;
 	return (i);
@@ -50,7 +50,7 @@ static int					mikeler(char **mikel, char **line)
 	mateo = ft_strnew(ft_strlen(*mikel));
 	ft_strcpy(mateo, *mikel);
 	ft_strdel(mikel);
-	if ((josep = cheker(mateo, mikel, line)) < 0)
+	if ((josep = cheker(mateo, mikel, line, ft_strlen(mateo))) < 0)
 		return (-1);
 	ft_strdel(&mateo);
 	return (josep);
@@ -71,7 +71,7 @@ static int					reader(char *tmp, int fd, char **line, char **mikel)
 	}
 	else if (gonz < 0)
 		return (-1);
-	if ((gonz = cheker(tmp, mikel, line)) < 0)
+	if ((gonz = cheker(tmp, mikel, line, ft_strlen(tmp))) < 0)
 		return (-1);
 	return (gonz);
 }
