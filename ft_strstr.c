@@ -6,7 +6,7 @@
 /*   By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 21:44:13 by jagarcia          #+#    #+#             */
-/*   Updated: 2017/11/11 22:44:02 by jagarcia         ###   ########.fr       */
+/*   Updated: 2020/11/25 04:38:45 by jagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ char	*ft_strstr(const char *s1, const char *s2)
 
 	s1cpy = (char *)s1;
 	s2cpy = (char *)s2;
-	if (ft_strlen(s2cpy) == 0)
-		return (s1cpy);
+	if (!s2cpy || ft_strlen(s2cpy) == 0)
+		return (NULL);
+	if (!s1cpy || ft_strlen(s1cpy) == 0)
+		return (NULL);
 	while (*s1cpy)
 	{
 		if (*s1cpy == *s2cpy)
