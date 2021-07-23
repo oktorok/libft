@@ -12,7 +12,7 @@
 
 .PHONY : all clean fclean re
 
-MAKEFLAGS += --silent
+#MAKEFLAGS += --silent
 
 NAME = libft.a
 
@@ -20,7 +20,18 @@ FLAGS = -Wall -Wextra -Werror
 
 OBJ_DIR := objects/
 
-SRC := $(shell cat files_list/libft_files.txt)
+#SRC := $(shell cat files_list/libft_files.txt)
+
+SRC := ft_abs.c \
+ft_atoi.c \
+ft_bzero.c \
+ft_error.c \
+ft_isalnum.c \
+ft_isalpha.c \
+ft_isascii.c \
+ft_isdigit.c \
+ft_islower.c \
+ft_isprint.c
 
 HEADERS := $(shell cat files_list/headers.txt)
 
@@ -50,7 +61,6 @@ else
 $(NAME): $(OBJ)
 	@ar rsc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-
 
 $(OBJ_DIR)%.o : %.c $(HEADERS_PATH)
 	@printf "\033[92mCompiling libft...\033[0m\n"
