@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		ft_pow(int base, int exp)
+int	ft_pow(int base, int exp)
 {
 	int		pot;
 

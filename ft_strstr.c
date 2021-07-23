@@ -12,10 +12,8 @@
 
 #include "libft.h"
 
-char	*ft_strstr(const char *s1, const char *s2)
+char	*ft_strstr(const char *s1cpy, const char *s2cpy)
 {
-	char	*s1cpy;
-	char	*s2cpy;
 	char	*bubble;
 
 	s1cpy = (char *)s1;

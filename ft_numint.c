@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		ft_numint(int *array, int length, int search)
+int	ft_numint(int *array, int length, int search)
 {
 	int	i;
 

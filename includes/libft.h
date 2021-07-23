@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include "get_next_line.h"
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	size_t			content_size;
@@ -97,7 +97,7 @@ void				ft_debug_num(const char a, const int str);
 void				ft_putbytes(void *src, int size);
 size_t				ft_wstrlen(const wchar_t *str);
 char				*ft_strnjoin(const char *s1, const char *s2,
-		unsigned int n);
+						unsigned int n);
 size_t				ft_strlen_free(char *str);
 char				*ft_strnjoinfree(char *s1, char *s2, unsigned int n);
 char				ft_issdigit(char *str);

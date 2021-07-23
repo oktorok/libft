@@ -21,15 +21,16 @@ t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 	if (lst)
 	{
 		tmp = (*f)(lst);
-		if (!(newlist = ft_lstnew(tmp->content, tmp->content_size)))
+		newlist = ft_lstnew(tmp->content, tmp->content_size);
+		if (!newlist)
 			return (NULL);
 		cpynewlist = newlist;
 		while (lst->next)
 		{
 			lst = lst->next;
 			tmp = (*f)(lst);
-			if (!(cpynewlist->next = ft_lstnew(tmp->content,
-							tmp->content_size)))
+			cpynewlist->next = ft_lstnew(tmp->content, tmp->content_size);
+			if (!cpynewlist->next)
 				return (NULL);
 			cpynewlist = cpynewlist->next;
 		}

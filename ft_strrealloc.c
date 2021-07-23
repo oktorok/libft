@@ -22,7 +22,8 @@ char	*ft_strrealloc(char *ptr, size_t size)
 	len = ft_strlen(ptr);
 	if (len >= size)
 		return (ptr);
-	if (!(dest = ft_strnew(size)))
+	dest = ft_strnew(size);
+	if (!dest)
 		return (dest);
 	dest = ft_strcpy(dest, ptr);
 	return (dest);

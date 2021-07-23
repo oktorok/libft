@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-static int		func_while2(const char **s, char c)
+static int	func_while2(const char **s, char c)
 {
-	int cont;
-	int i;
+	int	cont;
+	int	i;
 
 	i = 0;
 	cont = 0;
@@ -38,13 +38,15 @@ static t_list	*func_while(const char *s, int j, char c)
 		cont = func_while2(&s, c);
 		if (!mylist)
 		{
-			if (!(mylist = ft_lstnew(ft_strsub(s, 0, cont), cont)))
+			mylist = ft_lstnew(ft_strsub(s, 0, cont), cont);
+			if (!mylist)
 				return (NULL);
 			tmp = mylist;
 		}
 		else
 		{
-			if (!(tmp = ft_lstnext(tmp, tmp, ft_strsub(s, 0, cont), cont)))
+			tmp = ft_lstnext(tmp, tmp, ft_strsub(s, 0, cont), cont);
+			if (!tmp)
 				return (NULL);
 		}
 		while (cont-- > 0)
@@ -53,7 +55,7 @@ static t_list	*func_while(const char *s, int j, char c)
 	return (mylist);
 }
 
-t_list			*ft_lstsplit(char const *s, char c)
+t_list	*ft_lstsplit(char const *s, char c)
 {
 	t_list	*mylist;
 	int		cuant;
@@ -71,7 +73,8 @@ t_list			*ft_lstsplit(char const *s, char c)
 	}
 	if (cuant == 0)
 	{
-		if (!(mylist = ft_lstnew("", 0)))
+		mylist = ft_lstnew("", 0);
+		if (!mylist)
 			return (NULL);
 		return (mylist);
 	}

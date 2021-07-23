@@ -14,7 +14,8 @@
 
 t_list	*ft_lstnext(t_list *list1, t_list *list2, char *cont, int cont_size)
 {
-	if (!(list1->next = ft_lstnew(cont, cont_size)))
+	list1->next = ft_lstnew(cont, cont_size);
+	if (!list1->next)
 		return (NULL);
 	list2 = list1->next;
 	return (list2);
