@@ -12,7 +12,7 @@
 
 .PHONY : all clean fclean re
 
-#MAKEFLAGS += --silent
+MAKEFLAGS += --silent
 
 NAME = libft.a
 

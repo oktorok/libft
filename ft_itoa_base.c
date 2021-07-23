@@ -38,7 +38,7 @@ static void	calcnum(char *res, int *value, int base)
 	*value = *value / base;
 }
 
-static int	norm1(int value, int *neg)
+static int	norm1(int value, int *neg, int base)
 {
 	if (value < 0)
 	{
@@ -61,7 +61,7 @@ char	*ft_itoa_base(int value, int base)
 	if (base < 2 || base > 16)
 		return (NULL);
 	neg = 0;
-	value = norm(value, &neg);
+	value = norm1(value, &neg, base);
 	if (neg == 2)
 		return ("-2147483648");
 	digits = calcdigits(value, base);
