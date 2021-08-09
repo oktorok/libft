@@ -110,6 +110,6 @@ char				*ft_strinvert(const char *str);
 void				ft_error(char *err);
 int					ft_numint(int *array, int length, int num);
 int					ft_min(int a, int b);
-char				*ft_strrealloc(char *ptr, size_t size);
+char				*ft_strrealloc(char **ptr, size_t size);
 void				ft_putbits(char src);
 #endif

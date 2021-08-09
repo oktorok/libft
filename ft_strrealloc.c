@@ -12,19 +12,20 @@
 
 #include "libft.h"
 
-char	*ft_strrealloc(char *ptr, size_t size)
+char	*ft_strrealloc(char **ptr, size_t size)
 {
 	char	*dest;
 	size_t	len;
 
-	if (!ptr)
+	if (!*ptr)
 		return (ft_strnew(size));
-	len = ft_strlen(ptr);
+	len = ft_strlen(*ptr);
 	if (len >= size)
-		return (ptr);
+		return (*ptr);
 	dest = ft_strnew(size);
 	if (!dest)
 		return (dest);
-	dest = ft_strcpy(dest, ptr);
+	dest = ft_strcpy(dest, *ptr);
+	ft_strdel(ptr);
 	return (dest);
 }
