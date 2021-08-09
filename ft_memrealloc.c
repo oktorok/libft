@@ -20,7 +20,7 @@ void	*ft_memrealloc(void **ptr, size_t ptr_size, size_t final_size)
 		return (ft_memalloc(final_size));
 	if (ptr_size >= final_size)
 		return (*ptr);
-	dest = ft_strnew(size);
+	dest = ft_memalloc(final_size);
 	if (!dest)
 		return (dest);
 	dest = ft_memcpy(dest, *ptr, ptr_size);
