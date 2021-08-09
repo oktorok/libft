@@ -12,18 +12,18 @@
 
 #include "libft.h"
 
-void	*ft_memrealloc(void **ptr, size_t ptr_size, size_t final_size)
+void	*ft_memrealloc(void *ptr, size_t ptr_size, size_t final_size)
 {
 	char	*dest;
 
-	if (!*ptr)
+	if (!ptr)
 		return (ft_memalloc(final_size));
 	if (ptr_size >= final_size)
-		return (*ptr);
+		return (ptr);
 	dest = ft_memalloc(final_size);
 	if (!dest)
 		return (dest);
-	dest = ft_memcpy(dest, *ptr, ptr_size);
+	dest = ft_memcpy(dest, ptr, ptr_size);
 	free(ptr);
 	return (dest);
 }
