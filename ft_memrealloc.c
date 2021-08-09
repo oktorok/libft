@@ -22,7 +22,10 @@ void	*ft_memrealloc(void *ptr, size_t ptr_size, size_t final_size)
 		return (ptr);
 	dest = ft_memalloc(final_size);
 	if (!dest)
+	{
+		free(ptr);
 		return (dest);
+	}
 	dest = ft_memcpy(dest, ptr, ptr_size);
 	free(ptr);
 	return (dest);
