@@ -113,5 +113,5 @@ int					ft_min(int a, int b);
 char				*ft_strrealloc(char **ptr, size_t size);
 void				ft_putbits(char src);
 void				*ft_memrealloc(void *ptr, size_t ptr_size,
-					size_t final_size);
+						size_t final_size);
 #endif
