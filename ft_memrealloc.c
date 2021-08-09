@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrealloc.c                                    :+:      :+:    :+:   */
+/*   ft_memrealloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jagarcia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,20 +12,18 @@
 
 #include "libft.h"
 
-char	*ft_strrealloc(char **ptr, size_t size)
+void	*ft_memrealloc(void **ptr, size_t ptr_size, size_t final_size)
 {
 	char	*dest;
-	size_t	len;
 
 	if (!*ptr)
-		return (ft_strnew(size));
-	len = ft_strlen(*ptr);
-	if (len >= size)
+		return (ft_memalloc(final_size));
+	if (ptr_size >= final_size)
 		return (*ptr);
 	dest = ft_strnew(size);
 	if (!dest)
 		return (dest);
-	dest = ft_strcpy(dest, *ptr);
-	ft_strdel(ptr);
+	dest = ft_memcpy(dest, *ptr, ptr_size);
+	free(ptr);
 	return (dest);
 }

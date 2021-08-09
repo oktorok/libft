@@ -72,3 +72,4 @@ ft_tolower.c
 ft_toupper.c 
 ft_strrealloc.c
 ft_putbits.c
+ft_memrealloc.c
